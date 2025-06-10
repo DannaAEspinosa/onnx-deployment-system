@@ -9,6 +9,9 @@ from PIL import Image
 import io
 import os
 import urllib.request
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -32,7 +35,6 @@ def preprocess(image_bytes):
     # Preprocesa la imagen para el modelo MNIST: escala 28x28, escala 0-1
     img = Image.open(io.BytesIO(image_bytes)).convert('L').resize((28, 28))
     img_arr = np.array(img).astype(np.float32)
-    img_arr = 255 - img_arr  # Invertir colores si el fondo es blanco
     img_arr /= 255.0
     img_arr = img_arr.reshape(28, 28)  # para guardar como imagen
     Image.fromarray((img_arr * 255).astype(np.uint8)).save("debug_preprocessed.png")
