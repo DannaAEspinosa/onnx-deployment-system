@@ -11,9 +11,9 @@ load_dotenv()
 MODEL_URL = os.getenv("MODEL_URL")
 
 # Descargar el modelo si no existe
-if not os.path.exists("model.onnx"):
+if not os.path.exists("mnist.onnx"):
     print("Descargando modelo ONNX...")
-    urllib.request.urlretrieve(MODEL_URL, "model.onnx")
+    urllib.request.urlretrieve(MODEL_URL, "mnist.onnx")
     print("Modelo descargado.")
 
 # Preprocesamiento
@@ -24,7 +24,7 @@ def preprocess(image_array):
     return img_arr.reshape(1, 1, 28, 28)
 
 # Cargar modelo
-session = ort.InferenceSession("model.onnx")
+session = ort.InferenceSession("mnist.onnx")
 input_name = session.get_inputs()[0].name
 shape = session.get_inputs()[0].shape
 type = session.get_inputs()[0].type

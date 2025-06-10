@@ -28,7 +28,7 @@ jobs:
 
       - name: Download ONNX model
         run: |
-          curl -L -o model.onnx $MODEL_URL
+          python -c "import urllib.request; urllib.request.urlretrieve('${{ secrets.MODEL_URL }}', 'mnist12.onnx')"
 
       - name: Run tests
         run: |
