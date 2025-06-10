@@ -61,5 +61,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App for Containers
-        if: github.ref_name == 'dev' || github.ref_name == 'prod'
-        run: echo "Deploying to Azure Web App for Containers"
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: mnist-onnx-model-app
+          slot-name: production
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/onnx-model-api:${{ github.ref_name }}
