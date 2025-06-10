@@ -23,13 +23,20 @@
     const ctx = canvas.getContext('2d');
     let drawing = false;
 
-    // Configuración para dibujar
+    // Rellenar fondo blanco al inicio
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Configuración del pincel
     ctx.lineWidth = 20;
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
 
     canvas.addEventListener('mousedown', () => drawing = true);
-    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mouseup', () => {
+      drawing = false;
+      ctx.beginPath(); // importante para que no se conecten trazos viejos
+    });
     canvas.addEventListener('mouseout', () => drawing = false);
     canvas.addEventListener('mousemove', draw);
 
@@ -43,7 +50,8 @@
     }
 
     function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';  // Rellenar de blanco, no solo limpiar
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
       document.getElementById('result').textContent = '';
     }

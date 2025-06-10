@@ -14,7 +14,7 @@ Este proyecto implementa un sistema de despliegue automático para modelos ONNX 
 
 ##  Modelo utilizado: `mnist-12.onnx`
 
-Este proyecto utiliza un modelo preentrenado en formato ONNX llamado `mnist-12.onnx`, descargado directamente desde el repositorio oficial de modelos de ONNX: [https://github.com/onnx/models](https://github.com/onnx/models).
+Este proyecto utiliza un modelo preentrenado en formato ONNX llamado `mnist-12.onnx`, descargado directamente desde el repositorio oficial de modelos de ONNX: [https://github.com/onnx/models/tree/main/validated/vision/classification/mnist).
 
 ###  ¿Qué es MNIST?
 
