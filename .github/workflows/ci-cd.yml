@@ -64,5 +64,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ github.ref_name == 'prod' && 'mnist-onnx-model-app-prod' || 'mnist-onnx-model-app-dev' }}
-    slot-name: production
-    images: ${{ secrets.DOCKERHUB_USERNAME }}/onnx-model-api:${{ github.ref_name }}
+          slot-name: production
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/onnx-model-api:${{ github.ref_name }}
